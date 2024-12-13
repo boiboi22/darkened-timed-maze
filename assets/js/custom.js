@@ -1,8 +1,7 @@
 // This will load the audio file
 const audio = new Audio('assets/audio.mp3');
 
-// Set it to autoplay and loop
-audio.autoplay = true; // Start playing automatically when the page loads
+// Set it to loop
 audio.loop = true; // Set the audio to loop
 
 // Function to start the audio
@@ -12,5 +11,7 @@ function playAudio() {
     });
 }
 
-// Automatically play the audio when the page loads
-window.addEventListener('load', playAudio);
+// Listen for a user interaction (click or keypress) before playing audio
+window.addEventListener('click', playAudio);  // Plays audio on any click
+// Or use 'keydown' to trigger on the first key press
+// window.addEventListener('keydown', playAudio);
