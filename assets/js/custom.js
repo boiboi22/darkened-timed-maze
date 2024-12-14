@@ -1,8 +1,8 @@
-// This will load the audio file
+// Load the audio file
 const audio = new Audio('assets/audio.mp3');
 
 // Set it to loop
-audio.loop = true; // Set the audio to loop
+audio.loop = true;
 
 // Function to start the audio
 function playAudio() {
@@ -11,7 +11,18 @@ function playAudio() {
     });
 }
 
-// Listen for a user interaction (click or keypress) before playing audio
-window.addEventListener('click', playAudio);  // Plays audio on any click
-// Or use 'keydown' to trigger on the first key press
-// window.addEventListener('keydown', playAudio);
+// Function to handle the key press
+function handleKeyPress(event) {
+    const validKeys = ['w', 'a', 's', 'd', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'];
+
+    // Check if the pressed key is one of the valid keys
+    if (validKeys.includes(event.key)) {
+        playAudio();
+
+        // Remove the event listener to ensure the audio starts only once
+        window.removeEventListener('keydown', handleKeyPress);
+    }
+}
+
+// Add the keydown event listener
+window.addEventListener('keydown', handleKeyPress);
